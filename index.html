@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>البحث بالرقم الوظيفي</title>
+  <style>
+    body { font-family: Arial; direction: rtl; padding: 20px; }
+    input, button { padding: 6px 12px; font-size: 18px; margin: 8px 0; }
+    #result { margin-top: 20px; font-size: 20px; line-height: 1.8; }
+  </style>
+</head>
+<body>
+
+  <h2>البحث عن المدرسة بالرقم الوظيفي</h2>
+
+  <input type="text" id="jobInput" placeholder="أدخل الرقم الوظيفي">
+  <button onclick="searchJob()">بحث</button>
+
+  <div id="result"></div>
+
+  <!-- ربط ملف البيانات -->
+  <script src="Names_converted.js"></script>
+
+  <script>
+    function searchJob() {
+      const input = document.getElementById("jobInput").value.trim();
+      const jobNumber = parseInt(input, 10);
+      const resultDiv = document.getElementById("result");
+
+      const match = data.find(item => item.Directors_job_number === jobNumber);
+
+      if (match) {
+        resultDiv.innerHTML = `
+          <div><strong>المدرسة:</strong> ${match.School}</div>
+          <div><strong>الرقم الوظيفي:</strong> ${match.Directors_job_number}</div>
+          <div><strong>معلم/المعلم الأول:</strong> ${match.Teacher}</div>
+          <div><strong>تنفيذي:</strong> ${match.executive}</div>
+          <div><strong>مبتكر:</strong> ${match.Innovator}</div>
+          <div><strong>ريادي:</strong> ${match.Enterprising}</div>
+        `;
+      } else {
+        resultDiv.innerHTML = "<div>🚫 لم يتم العثور على الرقم الوظيفي.</div>";
+      }
+    }
+  </script>
+
+</body>
+</html>
